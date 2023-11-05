@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  scraper:
+    build: .
+    container_name: scraper_titulos
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: /bin/bash -c "while true; do sleep 1000; done"
