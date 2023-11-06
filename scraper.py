@@ -13,6 +13,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 load_dotenv()
 
 EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS')
+RECIPIENT_EMAIL = os.getenv('RECIPIENT_EMAIL')
 EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
 URL = os.getenv('SCRAPER_URL')
 
@@ -41,7 +42,7 @@ def send_email():
     msg = EmailMessage()
     msg['Subject'] = 'Disponibilidad de Turnos'
     msg['From'] = EMAIL_ADDRESS
-    msg['To'] = EMAIL_ADDRESS  # o cualquier destinatario que desees
+    msg['To'] = RECIPIENT_EMAIL  
     msg.set_content('¡Los turnos están disponibles!')
 
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
