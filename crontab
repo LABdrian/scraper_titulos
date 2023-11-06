@@ -1,2 +1,2 @@
-*/5 * * * * python /app/scraper.py >> /var/log/cron.log 2>&1
+*/5 * * * * /usr/local/bin/python3 /app/scraper.py >> /var/log/cron.log 2>&1
 

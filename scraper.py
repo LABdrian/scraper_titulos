@@ -1,10 +1,18 @@
+import sys
 import os
-from dotenv import load_dotenv
-import requests
 import logging
 import smtplib
 from email.message import EmailMessage
 from bs4 import BeautifulSoup
+from dotenv import load_dotenv
+import requests
+
+
+
+
+
+
+
 
 # Configuración del logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -17,10 +25,13 @@ RECIPIENT_EMAIL = os.getenv('RECIPIENT_EMAIL')
 EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
 URL = os.getenv('SCRAPER_URL')
 
+def print_python_version():
+    print(sys.version)
+
 def check_availability():
     """Verifica la disponibilidad de turnos en la página web."""
     try:
-        response = requests.get(URL)
+        response = requests.get(URL,timeout=10)
         response.raise_for_status()  # Lanzará un error si la petición no fue exitosa
 
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -42,7 +53,7 @@ def send_email():
     msg = EmailMessage()
     msg['Subject'] = 'Disponibilidad de Turnos'
     msg['From'] = EMAIL_ADDRESS
-    msg['To'] = RECIPIENT_EMAIL  
+    msg['To'] = RECIPIENT_EMAIL
     msg.set_content('¡Los turnos están disponibles!')
 
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
