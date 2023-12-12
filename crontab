@@ -1,6 +1,7 @@
-*/5 * * * * root /bin/echo "Cron is running at $(date)" >> /var/log/cron.log 2>&1
+*/5 * * * * /bin/echo "Cron is running at $(date)" >> /var/log/cron.log 2>&1
+*/5 * * * * /usr/bin/python3 /app/scraper.py >> /var/log/cron.log 2>&1
 
-*/5 * * * * root /usr/local/bin/python3 /app/scraper.py >> /var/log/cron.log 2>&1
+
 
 
 

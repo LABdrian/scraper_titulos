@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     nano \
     curl \
+    git \
     cron \
     && rm -rf /var/lib/apt/lists/*
 
